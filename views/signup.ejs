@@ -1,0 +1,53 @@
+<form action="">
+  <h1>Sign up!</h1>
+  <label for="firstname">Firstname </label>
+  <input type="text" id="firstname" name="firstname" required>
+  <label for="lastname">Lastname </label>
+  <input type="text" id="lastname" name="lastname" required>
+  <label for="username">Username </label>
+  <input type="text" id="username" name="username" required>
+  <label for="password">Password </label>
+  <input type="password" id="password" name="password" required>
+  <label for="confirmPassword">Confirm Password </label>
+  <input type="password" id="confirmPassword" name="confirmPassword" required>
+  <label for="user">User</label>
+  <input type="radio" name="role" id="user" value="user" checked>
+  <label for="admin">Admin</label>
+  <input type="radio" name="role" id="admin" value="admin">
+  <button type="submit">Sign up</button>
+</form>
+
+<script>
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const firstname = form.firstname.value;
+    const lastname = form.lastname.value;
+    const username = form.username.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+    const role = form.role.value;
+
+    try {
+      const response = await fetch('/signup', {
+        method: "POST",
+        body: JSON.stringify({ firstname, lastname, username, password, confirmPassword, role }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+
+      const data = await response.json();
+      
+      
+      if(response.ok && data.user) {
+          location.assign('/');
+        }
+    }catch (err) {
+      console.log(err);
+    }
+
+  })
+</script>

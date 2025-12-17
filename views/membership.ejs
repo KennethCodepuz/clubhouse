@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership</title>
+</head>
+<body>
+
+  <main>
+    <div>
+      <h1>Valorant Page</h1>
+      <p>
+        A page dedicated for Valorant players. You can read the posts other users created and write your own.
+        This community is a vibrant hub for Valorant enthusiasts—whether you’re a beginner looking for tips, a competitive player sharing strategies, or just someone who loves discussing the latest updates and skins. Connect with fellow agents, exchange tactics, showcase highlights from your matches, and stay up-to-date with the ever-evolving world of Valorant. Here, every post sparks conversation, and every player has a voice.
+      </p>
+      <form action="/membership" method="POST">
+        <label for="code">Enter code to become a member</label>
+        <input type="hidden" name="group" value="Valorant">
+        <input type="password" name="code" id="code">
+        <div class="valorantError">
+          <%= group === 'Valorant' ? err : ''; %>
+        </div>
+        <button>Join Now!</button>
+      </form>
+    </div>
+    <div>
+      <h1>League of Legends Page</h1>
+      <p>
+        A page dedicated for League Players. You can read the posts other users created and write your own.
+        This community is the ultimate gathering place for Summoners. Share your epic plays, discuss champion strategies, explore patch updates, and connect with players from all skill levels. Whether you’re climbing ranked or just enjoying a casual ARAM, this is the space to celebrate your victories, learn from defeats, and dive deep into the lore and meta of League of Legends.
+      </p>
+      <form action="/membership" method="POST">
+        <label for="code">Enter code to become a member</label>
+        <input type="hidden" name="group" value="League of Legends">
+        <input type="password" name="code" id="code">
+        <div class="leagueError">
+          <%= group === 'League of Legends' ? err : '';%>
+        </div>
+        <button>Join Now!</button>
+      </form>
+    </div>
+    <div>
+      <h1>Genshin Impact page</h1>
+      <p>
+        A page dedicated for Genshin Impact Players. You can read the posts other users created and write your own.
+        This community is a lively world for Travelers. Discover character guides, share gameplay experiences, discuss upcoming banners, and uncover secrets hidden in Teyvat. From exploring every region to strategizing your team compositions, connect with fellow adventurers, trade tips, and celebrate your journey through the magical lands of Genshin Impact.
+      </p>
+      <form action="/membership" method="POST">
+        <label for="code">Enter code to become a member</label>
+        <input type="hidden" name="group" value="Genshin Impact">
+        <input type="password" name="code" id="code">
+        <div class="genshinError">
+          <%= group === 'Genshin Impact' ? err : ''; %>
+        </div>
+        <button>Join Now!</button>
+      </form>
+    </div>
+
+  </main>
+  
+</body>
+</html>

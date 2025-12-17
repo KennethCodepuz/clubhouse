@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clubhouse</title>
+</head>
+<body>
+  <%- include('header') %>
+  
+  <main>
+    <% memberships.forEach(membership=> { %>
+      <button class="group <%= membership %>"><%= membership %></button>
+    <% }) %>
+    <div class="group-comments">
+
+    </div>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll('.group');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        console.log(button.textContent);
+      })
+    })
+
+  </script>
+</body>
+</html>
