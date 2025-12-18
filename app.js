@@ -3,6 +3,7 @@ const path = require('path');
 const cookierParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes.js');
 const membershipRoutes = require('./routes/membershipRoutes.js');
+const groupRoutes = require('./routes/groupRoutes.js')
 const { checkUser, requireAuth } = require('./middleware/authMiddleware.js');
 const { findByID } = require('./db/queries.js');
 require('dotenv').config();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
 app.use(membershipRoutes);
+app.use(groupRoutes);
 app.use(checkUser);
 
 app.get('/', checkUser, requireAuth, async (req, res) => {
@@ -29,7 +31,7 @@ app.get('/', checkUser, requireAuth, async (req, res) => {
     if(!userData) {
       return res.render('index');
     }
-    return res.render('index', { memberships: userData[0].membership ? userData[0].membership : [] });
+    return res.render('index', { memberships: userData[0].membership ? userData[0].membership : [], component: 'placeholder' });
   }catch(err) {
     console.log(err.message);
   }

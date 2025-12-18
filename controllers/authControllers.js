@@ -104,13 +104,16 @@ const loginPost = async (req, res) => {
   try {
     const user = await findByUsername(username);
 
-    if(user) {
+    console.log(user);
+
+    if(user.length !== 0) {
       const auth = await bcrypt.compare(password, user[0].password);
       if(auth) {
         const token = createToken(user[0].id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: MAXAGE * 1000 });
         res.status(201).json({ user: user }); 
       }
+      throw new Error('Invalid Credentials!')
     }
     throw new Error('Invalid Credentials!')
   }catch(err) {

@@ -10,22 +10,14 @@
   
   <main>
     <% memberships.forEach(membership=> { %>
-      <button class="group <%= membership %>"><%= membership %></button>
+      <a href="/<%= membership.split('').filter(letter => letter !== ' ' ).join('') %>">
+        <button class="group"><%= membership %></button>
+      </a>
     <% }) %>
     <div class="group-comments">
-
+      <%- include(component) %>
     </div>
   </main>
 
-  <script>
-    const buttons = document.querySelectorAll('.group');
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        console.log(button.textContent);
-      })
-    })
-
-  </script>
 </body>
 </html>
