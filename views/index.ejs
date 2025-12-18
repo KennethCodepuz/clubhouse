@@ -10,13 +10,10 @@
   
   <main>
     <% memberships.forEach(membership=> { %>
-      <a href="/<%= membership.split('').filter(letter => letter !== ' ' ).join('') %>">
+      <a href="/<%= membership.split('').filter(letter => letter !== ' ' ).map(letter => letter.toLowerCase()).join('') %>">
         <button class="group"><%= membership %></button>
       </a>
     <% }) %>
-    <div class="group-comments">
-      <%- include(component) %>
-    </div>
   </main>
 
 </body>

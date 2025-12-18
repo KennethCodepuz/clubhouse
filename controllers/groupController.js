@@ -1,5 +1,9 @@
 
+
 const valorantGet = (req, res) => {
+  const user = res.locals.user;
+
+  console.log(user);
   res.render('valorantFeed');
 }
 
