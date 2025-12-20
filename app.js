@@ -3,7 +3,7 @@ const path = require('path');
 const cookierParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes.js');
 const membershipRoutes = require('./routes/membershipRoutes.js');
-const groupRoutes = require('./routes/groupRoutes.js')
+const groupRoutes = require('./routes/groupRoutes.js');
 const { checkUser, requireAuth } = require('./middleware/authMiddleware.js');
 const { findByID } = require('./db/queries.js');
 require('dotenv').config();
@@ -27,7 +27,6 @@ app.get('/', checkUser, requireAuth, async (req, res) => {
 
   try {
     const userData = await findByID(user.id)
-    console.log(userData[0]);
     if(!userData) {
       return res.render('index');
     }

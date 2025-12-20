@@ -1,22 +1,42 @@
 
+const { getAllGroupNames, getAllPostByGroup, createPostQuery } = require("../db/queries");
 
-const valorantGet = (req, res) => {
+
+const groupGetPosts = async (req, res) => {
+  const {group} = req.params;
+
+  const groups = await getAllGroupNames();
+  const groupNames = groups.map(group => group.name).map(grup => grup.replaceAll(' ', ''));
+  
+  if(!groupNames.includes(group)) {
+    return res.render('404');
+  }
+
+  try {
+    const data = await getAllPostByGroup(group);
+    const formatData = data === undefined ? [] : data;
+    return res.render(`${group}`, { groupName: group, contents: formatData });
+  }catch (err) {
+    console.log(err);
+  }
+  
+}
+
+const createPost = async (req, res) => {
+  const { post } = req.body;
+  const { group } = req.params;
   const user = res.locals.user;
 
-  console.log(user);
-  res.render('valorantFeed');
-}
+  try {
+    const result = await createPostQuery(user.id, group, post);
+    return res.redirect(`/group/${group}`);
+  }catch (err) {
+    console.log(err);
+  }
 
-const leagueGet = (req, res) => {
-  res.render('leagueFeed');
-}
-
-const genshinGet = (req, res) => {
-  res.render('genshinFeed');
 }
 
 module.exports = {
-  valorantGet,
-  leagueGet,
-  genshinGet
+  groupGetPosts,
+  createPost
 }

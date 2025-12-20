@@ -20,9 +20,40 @@ const insertMembershipForUser = async (id, group) => {
   return rows;
 }
 
+// query for getting all the groups
+const getAllGroupNames = async () => {
+  const { rows } = await pool.query('SELECT name FROM groups');
+  return rows;
+}
+
+
+// POST CRUD OPERATIONS
+const createPostQuery = async (userId, groupName, post) => {
+  const { rows } = await pool.query('INSERT INTO posts(user_id, group_name, content) VALUES($1, $2, $3) RETURNING *',[userId, groupName, post]);
+  return rows;
+}
+
+const updatePost = async () => {
+
+}
+
+const getAllPostByGroup = async (group) => {
+  const { rows } = await pool.query('SELECT p.id, p.content, p.created_at, u.firstname, u.lastname FROM posts p JOIN users u ON p.user_id = u.id WHERE p.group_name ILIKE $1', [group]);
+  return rows;s
+}
+
+const deletePost = async () => {
+
+}
+
 module.exports = {
   createUser,
   findByUsername,
   findByID,
   insertMembershipForUser,
+  createPostQuery,
+  updatePost,
+  getAllPostByGroup,
+  deletePost,
+  getAllGroupNames
 }

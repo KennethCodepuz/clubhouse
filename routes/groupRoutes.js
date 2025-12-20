@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const { valorantGet, leagueGet, genshinGet } = require('../controllers/groupController.js');
+const { createPost, groupGetPosts} = require('../controllers/groupController.js');
 const { checkUser } = require('../middleware/authMiddleware.js');
 
 const groupRoutes = Router();
 
-groupRoutes.get('/valorant', checkUser, valorantGet);
-groupRoutes.get('/leagueoflegends', leagueGet);
-groupRoutes.get('/genshinimpact', genshinGet);
+groupRoutes.get('/group/:group', checkUser, groupGetPosts);
+
+groupRoutes.post('/group/:group', checkUser, createPost);
 
 module.exports = groupRoutes;
