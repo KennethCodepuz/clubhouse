@@ -12,7 +12,7 @@
     <% memberships.forEach(membership => { 
        const slug = membership
          .toLowerCase()
-         .replace(/\s+/g, '');
+         .replace(/\s+/g, '-');
   %>
     <a href="/group/<%= slug %>">
       <button class="group"><%= membership %></button>
