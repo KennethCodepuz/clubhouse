@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 
 // middleware
 app.use(cookierParser());
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
@@ -30,7 +31,8 @@ app.get('/', checkUser, requireAuth, async (req, res) => {
     if(!userData) {
       return res.render('index');
     }
-    return res.render('index', { memberships: userData[0].membership ? userData[0].membership : [], component: 'placeholder' });
+
+    return res.render('index', { memberships: userData[0].membership ? userData[0].membership : [], user: { firstname: userData[0].firstname, lastname: userData[0].lastname, role: userData[0].role } });
   }catch(err) {
     console.log(err.message);
   }

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { createPost, groupGetPosts} = require('../controllers/groupController.js');
+const { createPost, groupGetPosts} = require('../controllers/groupController/groupController.js');
 const { checkUser } = require('../middleware/authMiddleware.js');
 
 const groupRoutes = Router();

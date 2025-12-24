@@ -7,6 +7,8 @@
 </head>
 <body>
 
+  <%- include('header') %>
+
   <main>
     <div>
       <h1>Valorant Page</h1>
@@ -17,12 +19,15 @@
       <form action="/membership" method="POST">
         <label for="code">Enter code to become a member</label>
         <input type="hidden" name="group" value="Valorant">
-        <input type="password" name="code" id="code">
+        <input type="password" name="code" id="code" readonly onfocus="this.removeAttribute('readonly')">
         <div class="valorantError">
           <%= group === 'Valorant' ? err : ''; %>
         </div>
         <button>Join Now!</button>
       </form>
+      <a href="/group/valorant">
+        <button>View</button>
+      </a>
     </div>
     <div>
       <h1>League of Legends Page</h1>
@@ -33,12 +38,16 @@
       <form action="/membership" method="POST">
         <label for="code">Enter code to become a member</label>
         <input type="hidden" name="group" value="League of Legends">
-        <input type="password" name="code" id="code">
+        <input type="password" name="code" id="code" readonly onfocus="this.removeAttribute('readonly')">
         <div class="leagueError">
           <%= group === 'League of Legends' ? err : '';%>
         </div>
         <button>Join Now!</button>
       </form>
+      <a href="/group/league-of-legends">
+        <button>View</button>  
+      </a>
+      
     </div>
     <div>
       <h1>Genshin Impact page</h1>
@@ -49,12 +58,16 @@
       <form action="/membership" method="POST">
         <label for="code">Enter code to become a member</label>
         <input type="hidden" name="group" value="Genshin Impact">
-        <input type="password" name="code" id="code">
+        <input type="password" name="code" id="code" autocomplete="one-time-code" readonly onfocus="this.removeAttribute('readonly')">
         <div class="genshinError">
           <%= group === 'Genshin Impact' ? err : ''; %>
         </div>
         <button>Join Now!</button>
       </form>
+      <a href="/group/genshin-impact">
+        <button>View</button>
+      </a>
+      
     </div>
 
   </main>

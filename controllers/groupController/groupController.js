@@ -1,14 +1,14 @@
 
-const { getAllGroupNames, getAllPostByGroup, createPostQuery } = require("../db/queries");
+const { getAllGroupNames, getAllPostByGroup, createPostQuery, findByID } = require("../../db/queries");
+const { normalizeName, formatData } = require("./helperFunctions");
 
 
 const groupGetPosts = async (req, res) => {
   const {group} = req.params;
+  const user = res.locals.user;
 
   const groups = await getAllGroupNames();
-  const groupNames = groups.map(group => group.name).map(grup => grup.replace(/\s+/g, '-'));
-
-  console.log(group);
+  const groupNames = groups.map(group => normalizeName(group.name));
   
   if(!groupNames.includes(group)) {
     return res.render('404');
@@ -16,8 +16,13 @@ const groupGetPosts = async (req, res) => {
 
   try {
     const data = await getAllPostByGroup(group);
-    const formatData = data === undefined ? [] : data;
-    return res.render(`group-page`, { groupName: group, contents: formatData });
+    const userData = await findByID(user.id);
+    const membership = userData[0].membership?.map(normalizeName) || [];
+    
+    const formattedData = formatData(data, membership.includes(group));
+    
+    return res.render(`group-page`, { groupName: group, contents: formattedData});
+
   }catch (err) {
     console.log(err);
   }

@@ -1,5 +1,28 @@
-<header>
-  <nav>
-    <h1>Game Clubhouse</h1>
-  </nav>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <title>Clubhouse</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="website-name" href="/">
+        <h1>Secret Clubhouse</h1>
+      </a>
+      <ul class="header-navigation">
+        <li><a href="/"><button class="items ">Home</button></a></li>
+        <li><div class="name"><%= user.firstname %> <%= user.lastname %></div></li>
+        <li><a href="/membership"><button class="items ">Memberships</button></a></li>
+        <li>
+          <form action="/logout" method="POST">
+            <button class="logout-button">Log out</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+

@@ -1,39 +1,39 @@
-<div>
-  <h1>
-    Welcome to the <%= groupName.replace(/\-+/g, ' ') %> Group!
-  </h1>
+<body>
+  
+  <%- include('header') %>
 
-   <div>
-    <a href="/">
-      Home
-    </a>
-  </div>
+  <div>
+    <h1>
+      Welcome to the <%= groupName.replace(/\-+/g, ' ') %> Group!
+    </h1>
 
-  <div class="posts">
-    <% if(contents.length === 0) { %>
-      <h1>
-        No Posts here!
-      </h1>
-    <% } else { %>
-      <% contents.forEach(content => { %>
-        <div class="post-card <%= content.id %>">
-          <div>
-            <p class="name"><%= content.firstname %> <%= content.lastname %></p>
+    
+    <div class="posts">
+      <% if(contents.length === 0) { %>
+        <h1>
+          No Posts here!
+        </h1>
+      <% } else { %>
+        <% contents.forEach(content => { %>
+          <div class="post-card <%= content.id %>">
+            <div>
+              <p class="post-name"><%= content.firstname %> <%= content.lastname %></p>
+            </div>
+            <p class="content"><%= content.content %></p>
+            <div class="date">
+              <%= content.created_at %>
+            </div>
           </div>
-          <p class="content"><%= content.content %></p>
-          <div class="date">
-            <%= content.created_at %>
-          </div>
-        </div>
-      <% }) %>
-    <% } %>
-  </div>
+        <% }) %>
+      <% } %>
+    </div>
 
-  <div class="comments-input">
-    <form action="/group/<%= groupName %>" method="POST">
-      <input type="text" name="post" id="post" required>
-      <button type="submit">upload</button>
-    </form>
+    <div class="comments-input">
+      <form action="/group/<%= groupName %>" method="POST">
+        <input type="text" name="post" id="post" required>
+        <button type="submit">upload</button>
+      </form>
+    </div>
   </div>
 </div>
 

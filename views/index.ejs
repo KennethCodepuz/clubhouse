@@ -1,31 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clubhouse</title>
-</head>
-<body>
-  <%- include('header') %>
+
+
+  <%- include('header', user) %>
   
   <main>
-    <% memberships.forEach(membership => { 
-       const slug = membership
-         .toLowerCase()
-         .replace(/\s+/g, '-');
-  %>
-    <a href="/group/<%= slug %>">
-      <button class="group"><%= membership %></button>
-    </a>
-  <% }) %>
-  <div>
-    <h1>
-      Welcome to the Clubhouse!
-    </h1>
-    <p>
-      An exclusive place for you to join groups and share your thoughts.
-    </p>
-  </div>
+    <div class="group-navigation-container">
+      <h3>
+        Groups
+      </h3>
+      <ul class="group-navigation">
+        <% memberships.forEach(membership => { 
+            const slug = membership
+              .toLowerCase()
+              .replace(/\s+/g, '-');
+        %>
+        <li>
+          <a href="/group/<%= slug %>">
+            <button class="group-button"><%= membership %></button>
+          </a>
+        </li>
+      <% }) %>
+      </ul>
+        
+    </div>
+    <div class="welcome-message-container">
+      <h1>
+        Welcome <span><%= user.firstname %> <%= user.lastname %></span> to the Clubhouse!
+      </h1>
+      <p>
+        An exclusive place for you to join groups and share your thoughts.
+      </p>
+    </div>
   </main>
-</body>
-</html>
+
+  <%- include('footer'); -%>
+  
+
