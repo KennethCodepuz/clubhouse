@@ -4,9 +4,10 @@ function normalizeName(name) {
 
 function formatData(posts, isMember) {
   if(!isMember) {
-    return posts.map(item => ({...item, firstname: 'anonymous', lastname: 'anonymous' }));
+    return {posts: posts.map(item => ({...item, firstname: 'anonymous', lastname: 'anonymous' })), member: 'isNotMember'};
   }else {
-    return posts === undefined ? [] : posts;
+    console.log(posts);
+    return posts === undefined ? {posts: [], member: 'isMember'} : {posts: posts, member: 'isMember'};
   }
 }
 

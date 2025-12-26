@@ -21,7 +21,7 @@ const groupGetPosts = async (req, res) => {
     
     const formattedData = formatData(data, membership.includes(group));
     
-    return res.render(`group-page`, { groupName: group, contents: formattedData});
+    return res.render(`group-page`, { groupName: group, contents: formattedData.posts, member: formattedData.member });
 
   }catch (err) {
     console.log(err);

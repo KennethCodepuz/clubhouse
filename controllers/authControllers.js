@@ -99,13 +99,9 @@ const signupPost = [...validation, async (req, res) => {
 
 const loginPost = async (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
 
   try {
     const user = await findByUsername(username);
-
-    console.log(user);
-
     if(user.length !== 0) {
       const auth = await bcrypt.compare(password, user[0].password);
       if(auth) {

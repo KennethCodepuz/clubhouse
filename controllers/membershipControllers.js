@@ -13,7 +13,7 @@ const membershipPost = async (req, res) => {
   }
   const user = res.locals.user;
   const { code, group }= req.body;
-  
+
   try {
     const userData = await findByID(user.id);
 
