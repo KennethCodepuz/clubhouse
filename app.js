@@ -39,8 +39,7 @@ app.get('/', checkUser, requireAuth, async (req, res) => {
 });
 
 const PORT = process.env.port || 3000;
-const HOST = process.env.host || 'localhost';
 
-app.listen(PORT, HOST, () => {
-  console.log(`App is running on ${HOST} at port ${PORT}`);
+app.listen(PORT,  () => {
+  console.log(`App is running on port ${PORT}`);
 })
